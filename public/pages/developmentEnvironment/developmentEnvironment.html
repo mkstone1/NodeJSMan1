@@ -1,0 +1,69 @@
+<div> 
+  <h1 class="subCategories">1. Setting up your development environment</h1>
+
+  <div>
+    <div class="subCategories">
+      <h2>1.1 Donwload NodeJS</h2>
+      <p>
+        The first thing needed is to go and download Node JS. The easiest way is
+        to click this <a href="https://nodejs.org/en/download ">link</a> and
+        download the installer for your OS
+      </p>
+    </div>
+    <div class="subCategories">
+      <h2>1.2 Download and IDE</h2>
+      <p>
+        Go and download your favorite IDE for javascript. I can recommend visual
+        studio code which can be downloaded
+        <a href="https://code.visualstudio.com/download"> here</a>
+      </p>
+    </div>
+
+    <div class="subCategories">
+      <h2>1.3 Setup folder for your project</h2>
+      <p>
+        You will need to store all files for your project somewhere on your PC.
+        Find some place and create a folder
+      </p>
+    </div>
+    <div class="subCategories">
+      <h2>1.4 Initializing project</h2>
+      <p>
+        When setting up your project there is 2 ways to go about it. You can
+        either manually set it up or do it with npm commands
+      </p>
+      <h3>Manually Initializing your project</h3>
+      <div>
+        <p>
+          In your project folder create a file called package.json. Here you
+          will list all the dependencies for your project. Here we use express
+          as our web application framework and nodemon for auto refresh when
+          updating code files. Your package.json should look like this
+        </p>
+        <div class="code-block">
+          <p>
+            {"dependencies": <br />
+            { "express": "^4.18.2",<br />
+            "nodemon": "^2.0.21"}<br />
+            }
+          </p>
+        </div>
+        <p>
+          With your dependcies setup you can now run npm i from a terminal to
+          download dependencies
+        </p>
+      </div>
+      <div>
+        <h3>Automaticlly setting up your development environment</h3>
+        <p>
+          Open a terminal and go to your project folder. Run npm init. Follow
+          the prompts. Most should be self explanatory. For entry point write:
+          app.js Afterwards do npm i express and npm i nodemon <br>
+          Lastly create an app.js in the root of your project <br> <br> <br>
+          You are now ready to start coding with Node JS and express.
+          To start your project write nodemon.cmd app.js in the terminal
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

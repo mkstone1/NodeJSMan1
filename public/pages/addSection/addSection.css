@@ -1,0 +1,22 @@
+.add-title{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5vh;
+}
+
+.add-content{
+    display: flex;
+    flex-direction: column;
+
+}
+
+#add-title-input{
+    height: 5vh;
+    text-align: start;
+}
+
+#add-content-input{
+    height: 20vh;
+    resize: none;
+    margin-bottom: 2vh;
+}

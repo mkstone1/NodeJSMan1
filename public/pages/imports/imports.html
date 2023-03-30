@@ -1,0 +1,56 @@
+<div>
+  <h1>4 Working with imports</h1>
+
+  <div>
+    <h2>4.1 CommonJS</h2>
+    <p>
+      So far we have been using CommonJS to import functionality fron other
+      moduels that we need. This has been done using the require keywork. This
+      was done when setting up express where we imported express using require.
+      To export with CommonJS you can use module.exports and then use require in
+      another module to import functionality. We will now look at another way of
+      doing this.
+    </p>
+  </div>
+  <div>
+    <h2>4.2 ES6</h2>
+    <p>
+      In order to use ES6 we need to update our package.json file. Before our
+      dependcies we need to add "type":"module". This will allow us to use the
+      import and export statements. When we have done this we can use import
+      express from "express"; rather then require.
+    </p>
+
+    <div class="code-block-small subCategories">
+      <img src="./assets/images/importExpress.png" />
+    </div>
+
+    <p>
+      So far we have been defining our data in the app.js file. Lets move this
+      to its own file. Create a folder in the root of your project called utils.
+      In here create a javascript file called meatcuts. Copy the array with
+      meatcuts into this new file. We now need to export it. To do this add
+      export before const. We now need to import it into our app.js file. To do
+      this we use desructuring to import meatcuts from meatcuts.js
+    </p>
+
+    <div class="code-block-small subCategories">
+      <img src="./assets/images/meatcutsImport11.png" />
+    </div>
+    <div class="code-block-small  subCategories">
+      <img src="./assets/images/meatcutsImport1.png" />
+    </div>
+    <p>
+      There is another way of doing this. In our meatcuts.js file we can use
+      export default in the bottom the file and export meatcuts here. When we
+      then import it in app.js we do not need to use desructuring.
+    </p>
+
+    <div class="code-block-small subCategories">
+        <img src="./assets/images/meatcutsImport21.png" />
+      </div>
+      <div class="code-block-small subCategories">
+        <img src="./assets/images/meatcutsImport2.png" />
+      </div>
+  </div>
+</div>

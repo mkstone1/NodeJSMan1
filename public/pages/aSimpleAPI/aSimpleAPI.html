@@ -1,0 +1,152 @@
+<div>
+  <h1>3. Setting up a simple API</h1>
+
+  <div class="subCategories">
+    <h2 class="subCategories">3.1 Setting up express</h2>
+    <p>
+      The first thing we need to do in order to setup our API is to import
+      express and initizalise it. The import is done with require, as shown
+      below, and we express() to initizalise it. Afterwards we need express to
+      listen on some port. We define the port and use the listen function which
+      accepts a port and a callback. We use the callback to view an error, if
+      any occures, or print a success messages otherwise. This must be last
+      thing in our code, so make sure to put everything else before
+      app.listen<br /><br />
+      We will now use the same data as the last section and setup a get endpoint
+      to retrive that data. First we must define it. Now we can use the .get
+      function to respond to get request on specific endpoints. This function
+      takes the endpoint as the first parameter and a callback as the second.
+      The endpoint we define is going to be /meatcuts. The callback has two
+      parameter the request and the response. We want to send all the data as a
+      response to request on this endpoint. Therefore can use the send funciton
+      on the response to specifify what to send as a response. Here we input our
+      data as a response. This is the code with everything
+    </p>
+
+    <div class="code-block-small subCategories">
+      <img src="./assets/images/firstGetRequest.png" />
+    </div>
+
+    <p>
+      We can now run the code by opening a terminal and going to the root of our
+      project. If you installed nodemon previously you can run "nodemon.cmd
+      app.js". This will restart the server everytime you make changes in a js
+      file. Alternativly you can use "node app.js" to start the server. You will
+      need to restart the server everytime you make changes with this approch.
+      Now that the server has been started we can go to localhost:port/meatcuts,
+      where you should replace port with whatever port you have selected. It is
+      recommended to use 8080 as this is the development HTTP port. For
+      production HTTP will use port 80. Here we can see the data being served by
+      the server. With this approch we get all the data, but what if we just
+      want a specific cut or all cuts from a specific animal. There are two ways
+      to do this. Through query strings and path parameters
+    </p>
+    <div class="subCategories">
+      <h2>3.2 Query string and path parameters</h2>
+      <h3>3.2.1 Query String</h3>
+      <p>
+        First lets talk about query string. These are pased in the url with
+        ?variable=value&anotherVariable=value. This way we can make requests for
+        specific data. Lets say we want to get all cuts of meat the belong to a
+        chicken. We can do this with a query string where we pass
+        ?animal=chicken. Let implement a get quest to service such an endpoint.
+        We need some way of getting the variable. We can utilise the request
+        received. Inside the get callback function we can do req.query.id, where
+        id is the variable name. Now we need to use this to find the correct
+        data to send back. We can use the filter method to this and then send
+        the filtered array as our response.
+      </p>
+
+      <div class="code-block subCategories">
+        <img src="./assets/images/queryString.png" />
+      </div>
+
+      <h3>3.2.2 Path parameters</h3>
+      <p>
+        The other way of doing this is through path parameters. Lets start by
+        making a new get request to the endpoint /meatcuts/:animal. The :animal
+        part will now be our variable passed to the backend. Now instead of
+        using req.query.id we use req.params.id to access the varaible.
+      </p>
+    </div>
+
+    <div class="subCategories">
+      <h2>3.3 Patch, Post and delete requests</h2>
+      <h3>3.3.1 Delete</h3>
+      <p>
+        Now that we can send data lets look into how to update and delete data.
+        We need to use either path parameters or query strings to identify a
+        specific data point to edit. We can then use app.delete to delete,
+        app.post to create and app.patch to update data. Lets start with delete.
+        Create a delete mapping a endpoint and use either query strings or path
+        parameters to find a specific data point. I will use path parameters
+        here. Since we need to find specific datapoints it will be easier to add
+        an id parameter to all the data. This is good practice and i have edited
+        in the code below to show how it works. Now it is easy to delete a
+        specifc cut using the id. We can use the findIndex function on the our
+        data array to find the index of a specific cut and then splice the
+        delete one elemtent from the index. I have done a small if statement to
+        check if we find anything or else send a appropriate response.
+      </p>
+
+      <div class="code-block subCategories">
+        <img src="./assets/images/deleteRequest.png" />
+      </div>
+
+      <h3>3.3.2 Post</h3>
+      <p>
+        In order to create new object we need to be able to parse data thats
+        coming in. Express has a inbuild parser for json so lets use that. In
+        the top of the app.js file add app.use(express.json()). This will tell
+        express to use the json parser on the body of incoming requests. Now
+        that we can parse the input we get, we can use it to create new entires
+        in our meatcuts array. We can again use the request parameter and the
+        req.body to access the body of a given request. As we now have IDs we
+        need a way to handle how to give IDs to new data. Lets create a
+        currentId variable with let and set it to the highest id. We can then
+        take the new id and the request body and push this to our array.
+      </p>
+
+      <div class="code-block-small subCategories">
+        <img src="./assets/images/postRequest.png" />
+      </div>
+
+      <h3>3.3.3 Patch</h3>
+      <p>
+        When we need to update a datapoint we use the patch request. Again we
+        need to find a specifc datapoint to edit. This is done in the same way
+        as for the delete request. We can use the index to find and update the
+        datapoint with whatever data is in the body of the request.
+      </p>
+
+      <div class="code-block subCategories">
+        <img src="./assets/images/patchRequest.png" />
+      </div>
+    </div>
+
+    <div class="subCategories">
+      <h2>3.4.1 Using Postman to test our endpoints</h2>
+
+      <p>
+        We have now setup endpoints for delete, post and patch request but have
+        not tested any of these endpoints. To do this we will use postman. In
+        post we can setup request using specific HTTP request methods. For the
+        delete mapping we just have to setup a delete mapping and use the path
+        parameter to specifify what data point to delete. For post we need to
+        send the data we are using to create a new object in the body of the
+        request. As we are using the JSON parser we must send the data in a JSON
+        format. To do this in postman edit the body and set it to raw and select
+        JSON as the type. Now enter the data as JSON with all the attributes
+        nessesary to create the object
+      </p>
+      <div class="code-block subCategories">
+        <img src="./assets/images/postRequestPostman.png" />
+      </div>
+      <p>
+        The patch request is a combination of the two previous. We need to use
+        the path parameter to specifify what datapoint to edit, and send the a
+        body with the data to be edited.
+      </p>
+    </div>
+  </div>
+</div>

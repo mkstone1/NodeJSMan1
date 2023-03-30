@@ -1,0 +1,55 @@
+<div>
+  <h2>3. Setting up a simple web server</h2>
+
+  <div class="subCategories">
+    <h2>3.1 Initializing express</h2>
+    <p>
+      The first thing we need to do in order to setup our web server is to
+      import express. We then initialize it. This is done on line 1 and 2 in the
+      code section below. Now we need to point express to where our static web
+      files will be as can be seen on line 3. Here we have created a public
+      folder in the root of our project to hold all of these files. All files
+      here can be accessed by others and therefore only frontend files should be
+      located here. After this we need to setup to listen on a specific port. It
+      would also be nice to have print an error, if there are any, when start or
+      else printing that everything went well. We can see on line 5 through 11
+      how this is done. First we setup a port. This does not need to be saved in
+      a variable but is done here for good measure. Afterwards we use the listen
+      function and pass in the port and a callback function. This callback takes
+      an error and if this exists we print or else print a success statement
+    </p>
+    <div class="code-block-small subCategories">
+      <img src="./assets/images/initExpress.png" />
+    </div>
+  </div>
+
+  <div class="subCategories">
+    <h2>3.2 Servering our first page</h2>
+    <p>
+      In order to for us to server a page we need a place to hold our html, css
+      and other frontend files. If you have not created a public folder in the
+      root of the project, do that now. Here create a new folder called pages
+      and in there a folder called frontpage to hold the frontpage. You can also
+      create a folder called assets to hold images and general css code. Create
+      an frontpage.html and .css file. Setup the basic html page and add
+      something to the page. I have added an h1 with some text to display. Your
+      project should look like this
+    </p>
+    <div class="code-block subCategories">
+      <img src="./assets/images/firstWebPage.png" />
+    </div>
+
+    <p>
+      The last thing to do is make express server our frontpage. In our app.js
+      file we need to setup response to a get request on a specific url. We can
+      use express get method to do this just like when setting up the API. The
+      difference here is the we need to send a file not data so we use sendFile
+      method instead of send. Here we need to point to the correct file and give
+      the full path. To get the full path we can use process.cwd or if we are
+      not using ES6 we can use __dirname.
+    </p>
+    <div class="code-block subCategories">
+      <img src="./assets/images/frontpageGet.png" />
+    </div>
+  </div>
+</div>
